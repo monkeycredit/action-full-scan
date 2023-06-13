@@ -3863,8 +3863,8 @@ async function run() {
         await exec.exec(`chmod a+w ${jsonReportName} ${mdReportName} ${htmlReportName}`);
 
         await exec.exec(`docker pull ${docker_name} -q`);
-        let command = (`docker run -v ${workspace}:/zap/wrk/:rw --network="host" ` +
-            `-t ${docker_name} zap-full-scan.py --user root -t ${target} -J ${jsonReportName} -w ${mdReportName}  -r ${htmlReportName} ${cmdOptions}`);
+        let command = (`docker run -v ${workspace}:/zap/wrk/:rw --user root --network="host" ` +
+            `-t ${docker_name} zap-full-scan.py -t ${target} -J ${jsonReportName} -w ${mdReportName}  -r ${htmlReportName} ${cmdOptions}`);
 
         if (plugins.length !== 0) {
             command = command + ` -c ${rulesFileLocation}`
